@@ -14,7 +14,7 @@ writer.on('error', reject);
 }
 
 async function processArticle(article) {
-const apiKey = 'YOUR_API_KEY'.trim();
+const apiKey = 'YOUR_OPENAI_API_KEY'.trim();
 try {
 const response = await axios.post(
 'https://api.openai.com/v1/chat/completions',
