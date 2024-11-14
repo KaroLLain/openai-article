@@ -14,7 +14,7 @@ writer.on('error', reject);
 }
 
 async function processArticle(article) {
-const apiKey = 'OPEN__AI_KEY';
+const apiKey = 'YOUR_API_KEY'.trim();
 try {
 const response = await axios.post(
 'https://api.openai.com/v1/chat/completions',
@@ -22,7 +22,10 @@ const response = await axios.post(
 model: 'gpt-3.5-turbo',
 messages: [
 { role: 'system', content: 'You are a helpful assistant.' },
-{ role: 'user', content: `Przekształć poniższy artykuł na kod HTML z odpowiednimi tagami i miejscami na grafiki:\n\n${article}` }
+{ 
+role: 'user', 
+content: `Przekształć poniższy artykuł na kod HTML z odpowiednimi tagami i miejscami na grafiki. Użyj odpowiednich tagów HTML do strukturyzacji treści. Określ miejsca, gdzie warto wstawić grafiki, oznaczając je z użyciem tagu <img> z atrybutem src="image_placeholder.jpg". Dodaj atrybut alt do każdego obrazka z dokładnym promptem, który możemy użyć do wygenerowania grafiki. Umieść podpisy pod grafikami używając odpowiedniego tagu HTML. Oto artykuł:\n\n${article}` 
+}
 ],
 max_tokens: 2048,
 temperature: 0.7
